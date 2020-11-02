@@ -78,6 +78,17 @@ export function getReasons (reasonInputs) {
   return reasons
 }
 
+function hideReasonLabels (reasonInputs) {
+  reasonInputs.forEach(function (entry) {
+    if (entry.checked) {
+      console.log(entry.parentNode.getElementsByTagName('label'))
+      entry.parentNode.getElementsByTagName('label')[0].style.height = 'auto'
+    } else {
+      entry.parentNode.getElementsByTagName('label')[0].style.height = '1.5em'
+    }
+  })
+}
+
 export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonAlert, snackbar) {
   formInputs.forEach((input) => {
     const exempleElt = input.parentNode.parentNode.querySelector('.exemple')
@@ -105,6 +116,7 @@ export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonA
 
   reasonInputs.forEach(radioInput => {
     radioInput.addEventListener('change', function (event) {
+      hideReasonLabels(reasonInputs)
       const isInError = reasonInputs.every(input => !input.checked)
       reasonFieldset.classList.toggle('fieldset-error', isInError)
       reasonAlert.classList.toggle('hidden', !isInError)

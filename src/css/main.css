@@ -664,3 +664,9 @@ input[type=number] {
 .fieldset-error {
   border: 3px solid red;
 }
+
+.content {
+  height: 1.5em;
+  margin-left: 10px;
+  overflow: hidden;
+}

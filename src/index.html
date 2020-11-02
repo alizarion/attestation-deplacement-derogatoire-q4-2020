@@ -29,14 +29,14 @@
     <title>Attestation de déplacement dérogatoire</title>
 </head>
 <body>
-    <header role="banner" class="wrapper">
+    <header  role="banner" class="wrapper hidden">
         <picture>
             <source srcset="/MIN_Interieur_RVB_dark.svg" media="(prefers-color-scheme: dark)">
             <img src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité."
                 class="logo" role="presentation" aria-hidden="true">
         </picture>
 
-        <div>
+        <div class="hidden">
             <h1 class="flex flex-wrap">
                 <span class="covid-title">
                     COVID-19
@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <div id="footnotes">
+        <div id="footnotes" class="hidden">
             <p id="footnote1">
                 [1] Les personnes souhaitant bénéficier de l'une de ces exceptions doivent se munir s'il y a lieu, lors de leurs déplacements hors de leur domicile, d'un document leur permettant de justifier que le déplacement considéré entre dans le champ de l'une de ces exceptions.
             </p>
@@ -81,18 +81,18 @@
                 [3] Y compris les acquisitions à titre gratuit (distribution de denrées alimentaires...) et les déplacements liés à la perception de prestations sociales et au retrait d'espèces.
             </p>
         </div>
-        <p class="github">
+        <p class="github hidden" >
             Le code source de ce service est consultable sur <a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020" class="github-link">GitHub</a>.
         </p>
-        <p class="label-mi">
+        <p class="label-mi hidden" >
             Ministère de l'Intérieur - DNUM - SDIT
         </p>
-        <picture class="center">
+        <picture class="center hidden">
           <source srcset="/logo_dnum_dark.svg" media="(prefers-color-scheme: dark)">
             <img class="center" src="/logo_dnum.svg" alt="logo dnum">
         </picture>
     </main>
-    <footer role="contentinfo" class="main-footer">
+    <footer role="contentinfo" class="main-footer hidden">
         <div class="footer-links">
             <a href="./confidentialite.html" title="Confidentialité - nouvelle page" target="_blank" class="footer-line footer-link">Confidentialité</a>
             <a href="https://www.interieur.gouv.fr/Infos-du-site/Mentions-legales" title="Mentions légales - nouvelle page" target="_blank" class="footer-line footer-link">Mentions légales</a>

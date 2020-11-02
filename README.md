@@ -42,3 +42,12 @@ service :
 - [qrcode](https://github.com/soldair/node-qrcode)
 - [Bootstrap](https://getbootstrap.com/)
 - [Font Awesome](https://fontawesome.com/license)
+
+# About this fork
+
+To simplify the creation of the certificate by taking the query params as argument and passing them to the form, the fields are pre-filled are hidden for a better mobile display
+exemple:
+
+https://attestation.openlinux.fr/?fristname=John&lastname=Doe   
+
+by default the exit date corresponds to the current date, and the timestamp corresponds to the display time of the form
