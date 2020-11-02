@@ -81,7 +81,6 @@ export function getReasons (reasonInputs) {
 function hideReasonLabels (reasonInputs) {
   reasonInputs.forEach(function (entry) {
     if (entry.checked) {
-      console.log(entry.parentNode.getElementsByTagName('label'))
       entry.parentNode.getElementsByTagName('label')[0].style.height = 'auto'
     } else {
       entry.parentNode.getElementsByTagName('label')[0].style.height = '1.5em'
@@ -138,9 +137,6 @@ export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonA
     if (invalid) {
       return
     }
-
-    console.log(getProfile(formInputs), reasons)
-
     const pdfBlob = await generatePdf(getProfile(formInputs), reasons, pdfBase)
 
     const creationInstant = new Date()
@@ -161,6 +157,52 @@ export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonA
   })
 }
 
+function updateGeneratedUrl (formInputs) {
+  const listOfParam = ['address', 'city', 'firstname', 'lastname', 'zipcode', 'placeofbirth']
+  const inputMap = {}
+  formInputs.forEach((entry) => {
+    inputMap[entry.name] = entry.value
+  })
+  let url = null
+
+  listOfParam.forEach((param) => {
+    if (inputMap[param]) {
+      if (url) {
+        url = url + '&' + param + '=' + inputMap[param]
+      } else {
+        url = param + '=' + inputMap[param]
+      }
+    }
+  })
+
+  $('#reusablelink').value = (window.location.href + url)
+}
+
+function prepareExtras (formInputs) {
+  formInputs.forEach((input) => {
+    input.addEventListener('change', (event) => {
+      updateGeneratedUrl(formInputs)
+    })
+  })
+  const copyButton = $('#copylink')
+  copyButton.addEventListener('click', () => {
+    $('#reusablelink').select()
+    document.execCommand('copy')
+
+  })
+
+  copyButton.addEventListener('click', async (event) => {
+    const snackbarLink = $('#snackbar-link')
+    snackbarLink.classList.remove('d-none')
+    setTimeout(() => snackbarLink.classList.add('show'), 100)
+
+    setTimeout(function () {
+      snackbarLink.classList.remove('show')
+      setTimeout(() => snackbarLink.classList.add('d-none'), 500)
+    }, 6000)
+  })
+}
+
 export function prepareForm () {
   const formInputs = $$('#form-profile input')
   const snackbar = $('#snackbar')
@@ -169,5 +211,6 @@ export function prepareForm () {
   const reasonAlert = reasonFieldset.querySelector('.msg-alert')
   const releaseDateInput = $('#field-datesortie')
   setReleaseDateTime(releaseDateInput)
+  prepareExtras(formInputs)
   prepareInputs(formInputs, reasonInputs, reasonFieldset, reasonAlert, snackbar)
 }
