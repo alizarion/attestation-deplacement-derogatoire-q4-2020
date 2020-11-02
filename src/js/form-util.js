@@ -163,19 +163,15 @@ function updateGeneratedUrl (formInputs) {
   formInputs.forEach((entry) => {
     inputMap[entry.name] = entry.value
   })
-  let url = null
+  let url = '?'
 
   listOfParam.forEach((param) => {
     if (inputMap[param]) {
-      if (url) {
-        url = url + '&' + param + '=' + inputMap[param]
-      } else {
-        url = param + '=' + inputMap[param]
-      }
+      url = (url === '?' ? url : (url + '&')) + param + '=' + inputMap[param]
     }
   })
 
-  $('#reusablelink').value = (window.location.href + '?' + url ? url : '')
+  $('#reusablelink').value = (window.location.href + '?' + (url != null ? url : ''))
 }
 
 function prepareExtras (formInputs) {
