@@ -83,6 +83,7 @@ const createFormGroup = ({
   }
 
   const inputValue = getQueryVariable(name)
+  console.log(inputValue)
   if (inputValue) {
     input.value = inputValue
     formGroup.hidden = true

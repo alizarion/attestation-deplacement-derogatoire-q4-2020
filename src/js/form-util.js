@@ -175,10 +175,11 @@ function updateGeneratedUrl (formInputs) {
     }
   })
 
-  $('#reusablelink').value = (window.location.href + url)
+  $('#reusablelink').value = (window.location.href + '?' + url)
 }
 
 function prepareExtras (formInputs) {
+  updateGeneratedUrl(formInputs)
   formInputs.forEach((input) => {
     input.addEventListener('change', (event) => {
       updateGeneratedUrl(formInputs)
@@ -188,7 +189,6 @@ function prepareExtras (formInputs) {
   copyButton.addEventListener('click', () => {
     $('#reusablelink').select()
     document.execCommand('copy')
-
   })
 
   copyButton.addEventListener('click', async (event) => {
@@ -211,6 +211,6 @@ export function prepareForm () {
   const reasonAlert = reasonFieldset.querySelector('.msg-alert')
   const releaseDateInput = $('#field-datesortie')
   setReleaseDateTime(releaseDateInput)
-  prepareExtras(formInputs)
   prepareInputs(formInputs, reasonInputs, reasonFieldset, reasonAlert, snackbar)
+  prepareExtras(formInputs)
 }

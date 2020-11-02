@@ -691,3 +691,8 @@ input[type=number] {
 #snackbar-link.show {
   opacity: 1;
 }
+
+#reusablelink {
+    max-width: 400px;
+  margin: 30px auto;
+}
