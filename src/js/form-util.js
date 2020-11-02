@@ -158,7 +158,7 @@ export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonA
 }
 
 function updateGeneratedUrl (formInputs) {
-  const listOfParam = ['address', 'city', 'firstname', 'lastname', 'zipcode', 'placeofbirth']
+  const listOfParam = ['address', 'city', 'firstname', 'lastname', 'zipcode', 'placeofbirth', 'birthday']
   const inputMap = {}
   formInputs.forEach((entry) => {
     inputMap[entry.name] = entry.value
