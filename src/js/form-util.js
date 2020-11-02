@@ -175,7 +175,7 @@ function updateGeneratedUrl (formInputs) {
     }
   })
 
-  $('#reusablelink').value = (window.location.href + '?' + url)
+  $('#reusablelink').value = (window.location.href + '?' + url ? url : '')
 }
 
 function prepareExtras (formInputs) {
