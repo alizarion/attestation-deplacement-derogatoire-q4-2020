@@ -171,7 +171,7 @@ function updateGeneratedUrl (formInputs) {
     }
   })
 
-  $('#reusablelink').value = (window.location.href.split('/')[0] + (url !== '?' ? url : ''))
+  $('#reusablelink').value = (location.protocol + '//' + location.hostname + '/' + (url !== '?' ? url : ''))
 }
 
 function prepareExtras (formInputs) {
