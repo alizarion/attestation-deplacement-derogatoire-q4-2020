@@ -32,4 +32,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64,linux/386
           push: true
-          tags: alizarion/attestation-covid:tags:1.0.${{ steps.buildnumber.outputs.build_number }}
+          tags: alizarion/attestation-covid:tags:1.0.$BUILD_NUMBER
