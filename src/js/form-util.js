@@ -170,8 +170,26 @@ function updateGeneratedUrl (formInputs) {
       url = (url === '?' ? url : (url + '&')) + param + '=' + inputMap[param]
     }
   })
+  window.history.pushState({}, 'window.history.state.getTitle()', (url !== '?' ? url : ''))
+  $('#reusablelink').value = (location.protocol + '//' + location.hostname + (location.port ? (':' + location.port) : '') + '/' + (url !== '?' ? url : ''))
+}
 
-  $('#reusablelink').value = (location.protocol + '//' + location.hostname + '/' + (url !== '?' ? url : ''))
+function inactivityDelayReset () {
+  let time
+  window.onload = resetTimer
+  // DOM Events
+  document.onmousemove = resetTimer
+  document.onkeypress = resetTimer
+
+  function logout () {
+    location.reload(true)
+  }
+
+  function resetTimer () {
+    clearTimeout(time)
+    time = setTimeout(logout, 60000)
+    // 1000 milliseconds = 1 second
+  }
 }
 
 function prepareExtras (formInputs) {
@@ -197,6 +215,7 @@ function prepareExtras (formInputs) {
       setTimeout(() => snackbarLink.classList.add('d-none'), 500)
     }, 6000)
   })
+  inactivityDelayReset()
 }
 
 export function prepareForm () {
